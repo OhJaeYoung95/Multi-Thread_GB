@@ -1,0 +1,14 @@
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\ServerCore\bin\Debug\netcoreapp3.1\ServerCore.exe
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\ServerCore\bin\Debug\netcoreapp3.1\ServerCore.deps.json
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\ServerCore\bin\Debug\netcoreapp3.1\ServerCore.runtimeconfig.json
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\ServerCore\bin\Debug\netcoreapp3.1\ServerCore.runtimeconfig.dev.json
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\ServerCore\bin\Debug\netcoreapp3.1\ServerCore.dll
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\ServerCore\bin\Debug\netcoreapp3.1\ServerCore.pdb
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\ServerCore\obj\Debug\netcoreapp3.1\ServerCore.csproj.AssemblyReference.cache
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\ServerCore\obj\Debug\netcoreapp3.1\ServerCore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\ServerCore\obj\Debug\netcoreapp3.1\ServerCore.AssemblyInfoInputs.cache
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\ServerCore\obj\Debug\netcoreapp3.1\ServerCore.AssemblyInfo.cs
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\ServerCore\obj\Debug\netcoreapp3.1\ServerCore.csproj.CoreCompileInputs.cache
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\ServerCore\obj\Debug\netcoreapp3.1\ServerCore.dll
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\ServerCore\obj\Debug\netcoreapp3.1\ServerCore.pdb
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\ServerCore\obj\Debug\netcoreapp3.1\ServerCore.genruntimeconfig.cache

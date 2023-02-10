@@ -1,0 +1,14 @@
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\DummyClient\bin\Debug\netcoreapp3.1\DummyClient.exe
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\DummyClient\bin\Debug\netcoreapp3.1\DummyClient.deps.json
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\DummyClient\bin\Debug\netcoreapp3.1\DummyClient.runtimeconfig.json
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\DummyClient\bin\Debug\netcoreapp3.1\DummyClient.runtimeconfig.dev.json
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\DummyClient\bin\Debug\netcoreapp3.1\DummyClient.dll
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\DummyClient\bin\Debug\netcoreapp3.1\DummyClient.pdb
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\DummyClient\obj\Debug\netcoreapp3.1\DummyClient.csproj.AssemblyReference.cache
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\DummyClient\obj\Debug\netcoreapp3.1\DummyClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\DummyClient\obj\Debug\netcoreapp3.1\DummyClient.AssemblyInfoInputs.cache
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\DummyClient\obj\Debug\netcoreapp3.1\DummyClient.AssemblyInfo.cs
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\DummyClient\obj\Debug\netcoreapp3.1\DummyClient.csproj.CoreCompileInputs.cache
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\DummyClient\obj\Debug\netcoreapp3.1\DummyClient.dll
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\DummyClient\obj\Debug\netcoreapp3.1\DummyClient.pdb
+C:\Users\ostyo\OneDrive\바탕 화면\C#_Rookiss\Server\DummyClient\obj\Debug\netcoreapp3.1\DummyClient.genruntimeconfig.cache
