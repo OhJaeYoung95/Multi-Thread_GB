@@ -231,9 +231,67 @@ namespace ServerCore
             Console.WriteLine(number);
         }
         #endregion
+
+        #region Lock
+
+        static  int locknumber = 0;
+        static object _lockobj = new object();
+        static void LockThread_1()
+        {
+            for (int i = 0; i < 100000; i++)
+            {
+                // 상호배제 Mutual Exclusive
+                // CriticalSection(임계영역) C++ => std::mutex
+                lock(_lockobj)
+                {
+                    locknumber++;
+                }
+
+                //Monitor.Enter(_lockobj);    // 문을 잠구는 행위, 들어와있다는 뜻(다른 쓰레드가 진입 불가)
+
+                //locknumber++;
+
+                //Monitor.Exit(_lockobj);     // 잠금을 풀어준다, 나갔다는 뜻(다른 쓰레드가 진입 가능)
+            }
+        }
+        
+        // 데드락 DeadLock
+        static void LockThread_2()
+        {
+            for (int i = 0; i < 100000; i++)
+            {
+                // 상호배제 Mutual Exclusive
+                lock(_lockobj)
+                {
+                    locknumber--;
+                }
+
+                //Monitor.Enter(_lockobj);    // 문을 잠구는 행위, 들어와있다는 뜻(다른 쓰레드가 진입 불가)
+
+                //locknumber--;
+                    
+                //Monitor.Exit(_lockobj);     // 잠금을 풀어준다, 나갔다는 뜻(다른 쓰레드가 진입 가능)
+            }
+        }
+
+        // Race Condition(경합조건) 해결 => Interlocked.
+        static void Lock()
+        {
+            Task t1 = new Task(LockThread_1);
+            Task t2 = new Task(LockThread_2);
+            t1.Start();
+            t2.Start();
+
+            Task.WaitAll(t1, t2);
+
+            Console.WriteLine(locknumber);
+        }
+
+
+        #endregion
         static void Main(string[] args)
         {
-            InterLocked();
+            Lock();
         }
     }
 }
