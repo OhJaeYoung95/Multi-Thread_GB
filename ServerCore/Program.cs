@@ -187,9 +187,53 @@ namespace ServerCore
         }
 
         #endregion
+
+        #region InterLocked
+        // atomic = 원자성
+        static volatile int number = 0;
+        static void InterLockedThread_1()
+        {
+            for (int i = 0; i < 100000; i++)
+            {
+                // 1) 원자단위로 한번에 일어남 / All or Nothing(실행되거나 안되거나)
+                Interlocked.Increment(ref number);
+                // 2) number++;
+
+                // 3) int temp = number;
+                //    temp += 1;
+                //    number = temp;
+            }
+        }
+        static void InterLockedThread_2()
+        {
+            for (int i = 0; i < 100000; i++)
+            {
+                // 1) 원자단위로 한번에 일어남 / All or Nothing(실행되거나 안되거나)
+                Interlocked.Decrement(ref number);
+                // 2) number--;
+
+                // 3) int temp = number;
+                //    temp -= 1;
+                //    number = temp;
+            }
+        }
+
+        // Race Condition(경합조건) 해결 => Interlocked.
+        static void InterLocked()
+        {
+            Task t1 = new Task(InterLockedThread_1);
+            Task t2 = new Task(InterLockedThread_2);
+            t1.Start();
+            t2.Start();
+
+            Task.WaitAll(t1, t2);
+
+            Console.WriteLine(number);
+        }
+        #endregion
         static void Main(string[] args)
         {
-
+            InterLocked();
         }
     }
 }
