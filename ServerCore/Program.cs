@@ -4,6 +4,29 @@ using System.Threading.Tasks;
 
 namespace ServerCore
 {
+    #region SpinLock Class
+    class SpinLock
+    {
+        volatile bool _locked = false;
+        public void Acquire()
+        {
+            while (_locked)
+            {
+                // 잠김이 풀리기를 기다린다
+            }
+
+            // 내꺼!
+            _locked = true;
+        }
+
+        public void Release()
+        {
+            _locked = false;
+        }
+    }
+    #endregion
+
+
     class Program
     {
         #region Create Thread
@@ -289,9 +312,47 @@ namespace ServerCore
 
 
         #endregion
+
+        #region SpinLock
+
+        static int _spinLockNum = 0;
+        static SpinLock _lock = new SpinLock();
+        static void SpinLockThread_1()
+        {
+            for (int i = 0; i < 100000; i++)
+            {
+                _lock.Acquire();
+                _spinLockNum++;
+                _lock.Release();
+            }
+        }
+        static void SpinLockThread_2()
+        {
+            for (int i = 0; i < 100000; i++)
+            {
+                _lock.Acquire();
+                _spinLockNum--;
+                _lock.Release();
+            }
+
+        }
+
+        static void TestSpinLock()
+        {
+            Task t1 = new Task(SpinLockThread_1);
+            Task t2 = new Task(SpinLockThread_2);
+            t1.Start();
+            t2.Start();
+
+            Task.WaitAll(t1, t2);
+
+            Console.WriteLine(_spinLockNum);
+        }
+        #endregion
+
         static void Main(string[] args)
         {
-            Lock();
+            TestSpinLock();
         }
     }
 }
