@@ -7,21 +7,43 @@ namespace ServerCore
     #region SpinLock Class
     class SpinLock
     {
-        volatile bool _locked = false;
+        volatile int _locked = 0;
         public void Acquire()
         {
-            while (_locked)
+            //// 예시 1
+            //while(true)
+            //{
+            //    // 원래의 값을 대입 시켜주고 값을 세팅해준다
+            //    int original = Interlocked.Exchange(ref _locked, 1);
+            //    if (original == 0)
+            //        break;
+            //}
+
+            // 예시 2
+            // CAS Compare-And-Swap
+            while(true)
             {
-                // 잠김이 풀리기를 기다린다
+                int expected = 0;
+                int desired = 1;
+                if( (Interlocked.CompareExchange(ref _locked, desired, expected)) == expected )
+                    break;
             }
 
-            // 내꺼!
-            _locked = true;
+            // 잘못된 예시
+            //while (_locked)
+            //{
+            //    // 잠김이 풀리기를 기다린다
+            //}
+            //// 내꺼!
+            //_locked = true;
         }
 
         public void Release()
         {
-            _locked = false;
+            _locked = 0;
+
+            // 잘못된 예시
+            //_locked = false;
         }
     }
     #endregion
