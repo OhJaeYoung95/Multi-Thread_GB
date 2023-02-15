@@ -55,6 +55,37 @@ namespace ServerCore
     }
     #endregion
 
+    #region AutoResetEventClass
+
+    class Lock
+    {
+        // bool <= 커널, 운영체제에게 부탁하는 방식(한번만 실행하더라도 부담이 된다.)
+        AutoResetEvent _available = new AutoResetEvent(true);
+        ManualResetEvent _manualavailable = new ManualResetEvent(true);
+
+        public void Acquire()
+        {
+            _available.WaitOne();   // 입장 시도, AutoResetEvent에서는 입장후 문을 닫는것 까지 행한다
+            // _availabe.Reset();   // bool = false, WaitOne()에 포함되어 있다.
+        }
+        public void ManualAcquire()
+        {
+            _manualavailable.WaitOne();   // 입장 시도, ManualResetEvent에서는 입장후 문을 닫지 않는다.
+            _manualavailable.Reset();     // 이런식으로 입장을 통제해도 입장과 원자단위가 아니기에
+                                          // 멀티쓰레드에서는 동시입장이 된다.
+        }
+
+        public void Release()
+        {
+            _available.Set();       // flag = true
+        }
+        public void ManualRelease()
+        {
+            _manualavailable.Set();       // flag = true
+        }
+    }
+
+    #endregion
 
     class Program
     {
@@ -379,9 +410,49 @@ namespace ServerCore
         }
         #endregion
 
+        #region AutoResetEvent
+
+        static int _autoResetEventLockNum = 0;
+        static Lock _autoResetEventlock = new Lock();
+        static void AutoResetEventLockThread_1()
+        {
+            for (int i = 0; i < 100000; i++)
+            {
+                _autoResetEventlock.Acquire();
+                _autoResetEventLockNum++;
+                _autoResetEventlock.Release();
+            }
+        }
+        static void AutoResetEventLockThread_2()
+        {
+            for (int i = 0; i < 100000; i++)
+            {
+                _autoResetEventlock.Acquire();
+                _autoResetEventLockNum--;
+                _autoResetEventlock.Release();
+            }
+
+        }
+
+        static void TestAutoResetEventLock()
+        {
+            Task t1 = new Task(AutoResetEventLockThread_1);
+            Task t2 = new Task(AutoResetEventLockThread_2);
+            t1.Start();
+            t2.Start();
+
+            Task.WaitAll(t1, t2);
+
+            Console.WriteLine(_autoResetEventLockNum);
+        }
+
+
+        #endregion
+
+
         static void Main(string[] args)
         {
-            TestSpinLock();
+            TestAutoResetEventLock();
         }
     }
 }
