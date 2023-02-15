@@ -449,10 +449,47 @@ namespace ServerCore
 
         #endregion
 
+        #region Mutex
+        static int _mutexNum = 0;
+        static Mutex _mutexlock = new Mutex();  // 커널까지 접근함. 커널 동기화 객체
+                                                // AutoResetEvent와의 차이점은 bool형 정보만을 가지는 AutoResetEvent와
+                                                // 달리 몇번 실행되는지에 대한 int값과 쓰레드 정보를 담은ThreadID int값도 포함
+        static void MutexThread_1()
+        {
+            for (int i = 0; i < 100000; i++)
+            {
+                _mutexlock.WaitOne();
+                _mutexNum++;
+                _mutexlock.ReleaseMutex();
+            }
+        }
+        static void MutexThread_2()
+        {
+            for (int i = 0; i < 100000; i++)
+            {
+                _mutexlock.WaitOne();
+                _mutexNum--;
+                _mutexlock.ReleaseMutex();
+            }
+        }
+
+        static void TestMutex()
+        {
+            Task t1 = new Task(MutexThread_1);
+            Task t2 = new Task(MutexThread_2);
+            t1.Start();
+            t2.Start();
+
+            Task.WaitAll(t1, t2);
+
+            Console.WriteLine(_mutexNum);
+        }
+
+        #endregion
 
         static void Main(string[] args)
         {
-            TestAutoResetEventLock();
+            TestMutex();
         }
     }
 }
